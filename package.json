@@ -3,13 +3,16 @@
   "version": "0.1.0",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint"
+    "serve": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service serve",
+    "build": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service build",
+    "lint": "SET NODE_OPTIONS=--openssl-legacy-provider && vue-cli-service lint"
   },
   "dependencies": {
+    "axios": "^0.24.0",
     "core-js": "^3.6.5",
+    "pug": "^3.0.2",
     "vue": "^3.0.0",
+    "vue-axios": "^3.4.0",
     "vue-router": "^4.0.0-0",
     "vuex": "^4.0.0-0"
   },
@@ -25,6 +28,7 @@
     "eslint": "^6.7.2",
     "eslint-plugin-prettier": "^3.3.1",
     "eslint-plugin-vue": "^7.0.0",
-    "prettier": "^2.2.1"
+    "prettier": "^2.2.1",
+    "vue-cli-plugin-pug": "~2.0.0"
   }
 }
