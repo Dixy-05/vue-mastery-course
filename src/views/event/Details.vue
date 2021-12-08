@@ -1,10 +1,12 @@
 <template lang="pug">
 div(v-if="event")
   h1 {{event.title}}
-  div
-    router-link :to="{name:'EventDetails',params:{id}}" Details
-    router-link :to="{name:'EventRegister',params:{id}}" Register
-    router-link :to="{name:'EventEdit',params:{id}}" Edit
+  div.nav
+    router-link.link(:to="{name:'EventDetails',params:{id}}") Details 
+      span.bar |
+    router-link.link(:to="{name:'EventRegister',params:{id}}") Register 
+      span.bar |
+    router-link.link(:to="{name:'EventEdit',params:{id}}") Edit
   p {{event.time}} on {{event.date}} @ {{event.location}}
   p {{event.description}}	
 </template>
@@ -24,3 +26,12 @@ export default {
   },
 };
 </script>
+<style scoped>
+.bar {
+  margin-left: 2px;
+  margin-right: 2px;
+}
+.link {
+  font-weight: bold;
+}
+</style>
