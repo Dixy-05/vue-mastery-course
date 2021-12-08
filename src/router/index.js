@@ -3,6 +3,7 @@ import { createRouter, createWebHistory } from 'vue-router';
 import About from '../views/About.vue';
 import EventDetails from '../views/event/Details.vue';
 import EventEdit from '../views/event/Edit.vue';
+import EventLayout from '../views/event/Layout.vue';
 import EventList from '../views/EventList.vue';
 import EventRegister from '../views/event/Register.vue';
 
@@ -20,21 +21,28 @@ const routes = [
   },
   {
     path: '/event/:id',
-    name: 'EventDetails',
+    name: 'EventLayout',
     props: true, // to send route params as components props
-    component: EventDetails,
-  },
-  {
-    path: '/event/:id/register',
-    name: 'EventRegister',
-    props: true, // to send route params as components props
-    component: EventRegister,
-  },
-  {
-    path: '/event/:id/edit',
-    name: 'EventEdit',
-    props: true, // to send route params as components props
-    component: EventEdit,
+    component: EventLayout,
+    children: [
+      //having this path with empty string indicates, its the same as parent (/event/:id)
+      {
+        path: '',
+        name: 'EventDetails',
+        component: EventDetails,
+      },
+      // the path is inherit from the parent( e.g. /event/:id/register)
+      {
+        path: 'register',
+        name: 'EventRegister',
+        component: EventRegister,
+      },
+      {
+        path: 'edit',
+        name: 'EventEdit',
+        component: EventEdit,
+      },
+    ],
   },
 ];
 
