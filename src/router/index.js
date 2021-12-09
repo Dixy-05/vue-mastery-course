@@ -14,11 +14,13 @@ const routes = [
     component: EventList,
     props: (route) => ({ page: parseInt(route.query.page) || 1 }),
   },
+  //testing changing the path from /about to /about-event
   {
-    path: '/about',
+    path: '/about-event',
     name: 'About',
     component: About,
   },
+  { path: '/about', redirect: { name: 'About' } }, //This is in case somebody uses the old rout
   {
     path: '/event/:id',
     name: 'EventLayout',
