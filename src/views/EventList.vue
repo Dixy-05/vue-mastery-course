@@ -22,22 +22,28 @@ export default {
 
   data() {
     return {
-      events: null,
       totalEvents: 0,
     };
   },
 
-  created() {
+  async created() {
     watchEffect(async () => {
-      this.events = null;
-      //with axios response.json() is not needed !
-      const res = await EventService.getEvents(2, this.page);
-      // console.log(res);
-      this.events = res.data;
-      this.totalEvents = res.headers['x-total-count']; // this header will tell the amount of events
+      try {
+        //this is for user to know the page is doing something
+        this.$store.dispatch('fetchEvents', null); // dispatch action
+        const res = await EventService.getEvents(2, this.page);
+        this.$store.dispatch('fetchEvents', res.data); //dispatch action
+        this.totalEvents = res.headers['x-total-count']; // this header will tell the amount of events
+      } catch (err) {
+        console.log('eventList:', err.response);
+        this.$router.push({ name: 'NetworkError' });
+      }
     });
   },
   computed: {
+    events() {
+      return this.$store.state.events;
+    },
     hasNextPage() {
       const totalPages = Math.ceil(this.totalEvents / 2);
       return this.page < totalPages;

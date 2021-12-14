@@ -29,6 +29,130 @@
       "lastName": "Sharapova",
       "email": "maria@gmail.com",
       "id": 6
+    },
+    {
+      "firstName": "Dixy David",
+      "lastName": "Barahona Zepeda",
+      "email": "ddbarahona89@gmail.com",
+      "id": 7
+    }
+  ],
+  "events": [
+    {
+      "id": 5928101,
+      "category": "animal welfare",
+      "title": "Cat Adoption Day",
+      "description": "Find your new feline friend at this event",
+      "location": "Meow Town",
+      "date": "January 28,2022",
+      "time": "12:00",
+      "petsAllowed": true,
+      "organizer": "Kat Laydee"
+    },
+    {
+      "id": 4582797,
+      "category": "food",
+      "title": "Community Gardening",
+      "description": "Join us as we tend to the community edible plants",
+      "location": "Flora City",
+      "date": "March 14,2022",
+      "time": "10:00",
+      "petsAllowed": true,
+      "organizer": "Fern Pollin"
+    },
+    {
+      "id": 8419988,
+      "category": "sustainability",
+      "title": "Beach Cleanup",
+      "description": "Help clean up the trash along the shore",
+      "location": "Playa Del Carmen",
+      "date": "July 22,2022",
+      "time": "11:00",
+      "petsAllowed": false,
+      "organizer": "Carey Wales"
+    },
+    {
+      "id": 6028301,
+      "category": "canine adoption",
+      "title": "Dog Adoption Day",
+      "description": "Find your new dog friend at this event",
+      "location": "Wuf Town",
+      "date": "August 7,2022",
+      "time": "2:00",
+      "petsAllowed": true,
+      "organizer": "Dog lover"
+    },
+    {
+      "id": 8519978,
+      "category": "car wash",
+      "title": "Cleaning cars",
+      "description": "Helping people clean their cars",
+      "location": "New Orleans",
+      "date": "July 27,2022",
+      "time": "10:00",
+      "petsAllowed": false,
+      "organizer": "The Cleaning crew"
+    },
+    {
+      "id": 9028321,
+      "category": "Elder's day",
+      "title": "Help the elders",
+      "description": "Help the elders clean their houses",
+      "location": "Elder Town",
+      "date": "August 19,2022",
+      "time": "7:00",
+      "petsAllowed": true,
+      "organizer": "Care for the Elder"
+    },
+    {
+      "category": "food",
+      "title": "Feed the homeless",
+      "description": "Give food to homeless people all day",
+      "location": "Santa Monica",
+      "date": "july 1, 2022",
+      "time": "7 am",
+      "organizer": "John Doe",
+      "id": 9028322
+    },
+    {
+      "category": "animal welfare",
+      "title": "Food for the Animals",
+      "description": "Give food to homeless Cats and Dogs",
+      "location": "Somewhere in Town",
+      "date": "today",
+      "time": "3pm",
+      "organizer": "John Doe",
+      "id": 9028324
+    },
+    {
+      "category": "nature",
+      "title": "Tree day",
+      "description": "Plant some trees",
+      "location": "Park",
+      "date": "December 2",
+      "time": "3 pm",
+      "organizer": "John Doe",
+      "id": 9028325
+    },
+    {
+      "category": "housing",
+      "title": "New House",
+      "description": "Build new houses",
+      "location": "City",
+      "date": "December 26",
+      "time": "7am",
+      "organizer": "John Doe",
+      "id": 9028326
+    },
+    {
+      "category": "nature",
+      "title": "something",
+      "description": "description",
+      "location": "location",
+      "date": "date",
+      "time": "time",
+      "organizer": "John Doe",
+      "id": 9028327
     }
   ]
 }

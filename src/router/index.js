@@ -1,11 +1,14 @@
 import { createRouter, createWebHistory } from 'vue-router';
 
 import About from '../views/About.vue';
+import EventCreate from '../views/EventCreate';
 import EventDetails from '../views/event/Details.vue';
 import EventEdit from '../views/event/Edit.vue';
 import EventLayout from '../views/event/Layout.vue';
 import EventList from '../views/EventList.vue';
 import EventRegister from '../views/event/Register.vue';
+import NetworkError from '../views/NetworkError.vue';
+import NotFound from '../views/NotFound.vue';
 
 const routes = [
   {
@@ -45,6 +48,28 @@ const routes = [
         component: EventEdit,
       },
     ],
+  },
+  {
+    // this is matching all routes that don't match an existing route
+    path: '/:catchAll(.*)',
+    name: 'NotFound',
+    component: NotFound,
+  },
+  {
+    path: '/404/:resource',
+    name: '404Resource',
+    component: NotFound,
+    props: true,
+  },
+  {
+    path: '/network-error',
+    name: 'NetworkError',
+    component: NetworkError,
+  },
+  {
+    path: '/event/create',
+    name: 'EventCreate',
+    component: EventCreate,
   },
 ];
 

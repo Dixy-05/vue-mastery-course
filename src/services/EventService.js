@@ -1,7 +1,7 @@
 import axios from 'axios';
 
 const apiClient = axios.create({
-  baseURL: 'https://my-json-server.typicode.com/Dixy-05/fake-db-vue.js',
+  baseURL: 'http://localhost:5000',
   withCredentials: false,
   headers: {
     Accept: 'application/json',
@@ -14,5 +14,8 @@ export default {
   },
   async getEvent(id) {
     return await apiClient.get(`/events/${id}`);
+  },
+  async postEvent(event) {
+    return await apiClient.post(`/events`, event);
   },
 };

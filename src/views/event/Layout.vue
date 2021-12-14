@@ -15,14 +15,26 @@ import EventService from '../../services/EventService.js';
 export default {
   name: 'Layout',
   props: ['id'],
-  data() {
-    return {
-      event: null,
-    };
-  },
   async created() {
-    const res = await EventService.getEvent(this.id);
-    this.event = res.data;
+    try {
+      const res = await EventService.getEvent(this.id);
+      this.$store.dispatch('fetchEvent', res.data);
+    } catch (err) {
+      console.log('vueError:', err.response);
+      if (err.response && err.response.status == 404) {
+        this.$router.push({
+          name: '404Resource',
+          params: { resource: 'event' },
+        });
+      } else {
+        this.$router.push({ name: 'NetworkError' });
+      }
+    }
+  },
+  computed: {
+    event() {
+      return this.$store.state.event;
+    },
   },
 };
 </script>
