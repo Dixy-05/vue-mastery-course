@@ -46,6 +46,7 @@ const routes = [
         path: 'edit',
         name: 'EventEdit',
         component: EventEdit,
+        meta: { requireAuth: true },
       },
     ],
   },

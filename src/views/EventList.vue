@@ -31,7 +31,7 @@ export default {
       try {
         //this is for user to know the page is doing something
         this.$store.dispatch('fetchEvents', null); // dispatch action
-        const res = await EventService.getEvents(2, this.page);
+        const res = await EventService.getEvents(3, this.page);
         this.$store.dispatch('fetchEvents', res.data); //dispatch action
         this.totalEvents = res.headers['x-total-count']; // this header will tell the amount of events
       } catch (err) {

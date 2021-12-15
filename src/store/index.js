@@ -6,6 +6,7 @@ export default createStore({
     user: 'John Doe',
     events: [],
     event: {},
+    savedChanges: false,
   },
   mutations: {
     ADD_EVENT(state, event) {
@@ -16,6 +17,9 @@ export default createStore({
     },
     SET_EVENT(state, event) {
       state.event = event;
+    },
+    SAVED_CHANGES(state, boolean) {
+      state.savedChanges = boolean;
     },
   },
   actions: {
@@ -32,6 +36,9 @@ export default createStore({
     },
     fetchEvent({ commit }, event) {
       commit('SET_EVENT', event);
+    },
+    savedChanges({ commit }, boolean) {
+      commit('SAVED_CHANGES', boolean);
     },
   },
   modules: {},
