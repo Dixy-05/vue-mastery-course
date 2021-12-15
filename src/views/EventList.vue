@@ -11,7 +11,8 @@ div.pagination
 // @ is an alias to /src
 import EventCard from '../components/EventCard.vue';
 import EventService from '../services/EventService.js';
-import { watchEffect } from 'vue';
+import NProgress from 'nprogress';
+// import { watchEffect } from 'vue';
 
 export default {
   name: 'EventList',
@@ -26,28 +27,60 @@ export default {
     };
   },
 
-  async created() {
-    watchEffect(async () => {
-      try {
-        //this is for user to know the page is doing something
-        this.$store.dispatch('fetchEvents', null); // dispatch action
-        const res = await EventService.getEvents(3, this.page);
-        this.$store.dispatch('fetchEvents', res.data); //dispatch action
-        this.totalEvents = res.headers['x-total-count']; // this header will tell the amount of events
-      } catch (err) {
-        console.log('eventList:', err.response);
-        this.$router.push({ name: 'NetworkError' });
-      }
-    });
-  },
+  // async created() {
+  //   watchEffect(async () => {
+  //     try {
+  //       //this is for user to know the page is doing something
+  //       this.$store.dispatch('fetchEvents', null); // dispatch action
+  //       const res = await EventService.getEvents(3, this.page);
+  //       this.$store.dispatch('fetchEvents', res.data); //dispatch action
+  //       this.totalEvents = res.headers['x-total-count']; // this header will tell the amount of events
+  //     } catch (err) {
+  //       console.log('eventList:', err.response);
+  //       this.$router.push({ name: 'NetworkError' });
+  //     }
+  //   });
+  // },
   computed: {
     events() {
       return this.$store.state.events;
     },
     hasNextPage() {
-      const totalPages = Math.ceil(this.totalEvents / 2);
+      const totalPages = Math.ceil(this.totalEvents / 3);
       return this.page < totalPages;
     },
+  },
+  async beforeRouteEnter(routeTo, routeFrom, next) {
+    NProgress.start();
+    try {
+      const response = await EventService.getEvents(
+        3,
+        parseInt(routeTo.query.page) || 1
+      );
+      next((comp) => {
+        comp.$store.dispatch('fetchEvents', response.data); //dispatch action
+        comp.totalEvents = response.headers['x-total-count']; // this header will tell the amount of events
+      });
+    } catch (err) {
+      next({ name: 'NetworkError' });
+    } finally {
+      NProgress.done();
+    }
+  },
+  async beforeRouteUpdate(routeTo) {
+    NProgress.start();
+    try {
+      const response = await EventService.getEvents(
+        3,
+        parseInt(routeTo.query.page) || 1
+      );
+      this.$store.dispatch('fetchEvents', response.data); //dispatch action
+      this.totalEvents = response.headers['x-total-count']; // this header will tell the amount of events
+    } catch (err) {
+      return { name: 'NetworkError' };
+    } finally {
+      NProgress.done();
+    }
   },
 };
 </script>
