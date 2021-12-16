@@ -1,0 +1,40 @@
+<template>
+  <div>
+    <input :id="id" type="hidden" name="content" v-model="trixText" />
+    <!-- updated here -->
+    <trix-editor :input="id"></trix-editor>
+  </div>
+</template>
+
+<script>
+/* eslint-disable prettier/prettier */
+/* eslint-disable no-unused-vars */
+import Trix from "trix";
+import "trix/dist/trix.css";
+
+export default {
+  props: ["id"],
+  data() {
+    return {
+      trixText: "",
+    };
+  },
+  methods: {
+    setTextToTrix(e) {
+      this.trixText = document.getElementById(this.id).value;
+    },
+    emitDataBackToComponent() {
+      this.$emit("dataFromTrix", this.trixText);
+    },
+  },
+  mounted() {
+    document.addEventListener("trix-change", this.setTextToTrix);
+  },
+  beforeUnmount: function () {
+    document.removeEventListener("trix-change", this.setTextToTrix);
+  },
+  updated() {
+    this.emitDataBackToComponent();
+  },
+};
+</script>

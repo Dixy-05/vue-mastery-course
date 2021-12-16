@@ -11,7 +11,7 @@ div.eventCreate
 					:selected="option === event.category"
 				) {{option}}
 
-			h3 Name & describe your event 
+			h3 Name & describe your event
 
 			label Title
 			input(
@@ -50,33 +50,33 @@ div.eventCreate
 			)
 
 			button(type="submit") Submit
-	//- .newDiv {{$store.state.events}}	to display data from the store	
+	//- .newDiv {{$store.state.events}}	to display data from the store
 </template>
 <script>
-import { v4 as uuidv4 } from 'uuid';
+import { v4 as uuidv4 } from "uuid";
 export default {
-  inject: ['GStore'], // this comes from the GStore created & provided in main.js
+  inject: ["GStore"], // this comes from the GStore created & provided in main.js
 
   data() {
     return {
       categories: [
-        'sustainability',
-        'nature',
-        'animal welfare',
-        'housing',
-        'education',
-        'food',
-        'community',
+        "sustainability",
+        "nature",
+        "animal welfare",
+        "housing",
+        "education",
+        "food",
+        "community",
       ],
       event: {
-        id: '',
-        category: '',
-        title: '',
-        description: '',
-        location: '',
-        date: '',
-        time: '',
-        organizer: '',
+        id: "",
+        category: "",
+        title: "",
+        description: "",
+        location: "",
+        date: "",
+        time: "",
+        organizer: "",
       },
     };
   },
@@ -88,20 +88,20 @@ export default {
         organizer: this.$store.state.user,
       };
       //will return true or false
-      if (Object.values(event).every((value) => value != '')) {
-        this.$store.dispatch('createEvent', event);
+      if (Object.values(event).every((value) => value != "")) {
+        this.$store.dispatch("createEvent", event);
         //to notify user of new created event
         this.GStore.flashMessage = `The event "${event.title}" was successfully created`;
         setTimeout(() => {
-          this.GStore.flashMessage = '';
+          this.GStore.flashMessage = "";
         }, 5000);
         //to clean the form
         for (let i = 0; i < Object.keys(event).length; i++) {
-          event[Object.keys(event)[i]] = '';
+          event[Object.keys(event)[i]] = "";
         }
         this.event = event;
       } else {
-        console.log('One or more input fields are empty!!!');
+        console.log("One or more input fields are empty!!!");
       }
     },
   },
